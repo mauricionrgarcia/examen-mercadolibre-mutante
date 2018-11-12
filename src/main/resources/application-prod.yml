@@ -1,0 +1,22 @@
+# ===================================================================
+# Spring Boot configuration for the "prod" profile.
+#
+# Common config see the application.yml file.
+# ===================================================================
+spring:
+  profiles:
+    active: prod
+  data:
+    mongodb:
+      uri: mongodb://mercadolibre-mutante:${mongodbpsw}@cluster0-shard-00-00-7wzro.mongodb.net:27017,cluster0-shard-00-01-7wzro.mongodb.net:27017,cluster0-shard-00-02-7wzro.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true 
+      repositories:
+        type: AUTO
+      database: mutant
+
+#server:
+#  port: 8080
+
+logging:
+  level:
+    root: info
+    com.mercadolibre.exam.mutant: info

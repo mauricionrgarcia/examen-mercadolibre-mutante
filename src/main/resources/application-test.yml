@@ -1,0 +1,25 @@
+# ===================================================================
+# Spring Boot configuration for the "test" profile.
+#
+# Common config see the application.yml file.
+# ===================================================================
+spring:
+  profiles:
+    active: test
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017
+      repositories:
+        type: AUTO
+      database: embeded_db
+
+server:
+  port: 8080
+
+logging:
+  level:
+    root: info
+    com.mercadolibre.exam.mutant: DEBUG
+    org.springframework.integration: info
+    org.springframework.data.mongodb: info
+    org.springframework.data.mongodb.core.MongoTemplate: DEBUG
