@@ -6,7 +6,9 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.core.env.Environment;
 
 import com.mercadolibre.exam.mutant.config.DefaultProfileUtil;
@@ -24,6 +26,8 @@ import com.mercadolibre.exam.mutant.config.DefaultProfileUtil;
  * @sinse 07/11/2018 01:00:07
  */
 @SpringBootApplication
+@EnableHystrix
+@EnableAutoConfiguration
 public class ExamenMercadolibreMutanteApplication {
 
 	private static final Logger log = LoggerFactory.getLogger(ExamenMercadolibreMutanteApplication.class);

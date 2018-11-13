@@ -21,6 +21,39 @@ spring:
 #server:
 #  port: 8080
 
+management:
+  endpoints:
+    web:
+      base-path: /management
+      exposure:
+        #/refresh endpoint so that we can make dynamic configuration changes
+        include: ["configprops", "env", "health", "info", "threaddump", "refresh", "hystrix.stream"]
+  endpoint:
+    health:
+      show-details: WHEN_AUTHORIZED
+  info:
+    git:
+      mode: full
+
+eureka:
+  instance:
+    appname: ${spring.application.name}
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${random.value}
+    lease-renewal-interval-in-seconds: 10
+    lease-expiration-duration-in-seconds: 10
+    status-page-url-path: /management/info
+    health-check-url-path: /management/health
+  client:
+    enabled: true
+    fetchRegistry: true
+    registerWithEureka: true
+    instance-info-replication-interval-seconds: 15
+    registry-fetch-interval-seconds: 15
+    service-url:
+      defaultZone: ${EUREKA_URL:http://localhost:8761}/eureka/
+      
+      
 logging:
   level:
     root: info

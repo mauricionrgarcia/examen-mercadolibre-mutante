@@ -1,0 +1,28 @@
+version: '3'
+services:
+  service-registry:
+    build:
+      context: ../meli-service-registry/
+    # image: eureka
+    environment:
+      eureka.client.serviceUrl.defaultZone: http://service-registry:8761/eureka/
+      PORT: 8761
+    ports:
+      - 8761:8761
+  gateway:
+    build:
+      context: ../meli-gateway/
+    # image: eureka
+    environment:
+      eureka.client.serviceUrl.defaultZone: http://service-registry:8761/eureka/
+      PORT: 9999
+    ports:
+      - 9999:9999
+  mongodb:
+    image: mongo:latest
+  #  network_mode: host
+    ports:
+      - 27017:27017
+    volumes:
+      - /development/database/mongodb/docker/db:/data/db
+
